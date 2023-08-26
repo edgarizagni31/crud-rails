@@ -1,0 +1,45 @@
+<header class="w-100 d-flex justify-content-between mb-4">
+  <h1>Mis tareas</h1>
+  <%= link_to "Crear tarea",tasks_new_path, { class: "btn btn-success btn-sm" }   %>
+</header>
+<% unless notice.nil? %>
+  <div class="alert alert-success" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+<div id="tasks" class="tasks">
+  <table class="table">
+    <thead>
+      <th>Id</th>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th>accciones</th>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td>
+            <%= task.id %>
+          </td>
+          <td>
+            <%= task.title %>
+          </td>
+          <td>
+            <%= task.description %>
+          </td>
+          <td>
+            <%= task.status %>
+          </td>
+          <td class="d-flex justify-content-between">
+            <%= link_to "editar", tasks_edit_path(task.id), { class: "btn btn-success btn-sm " }  %>
+            <%= link_to "ver", show_path(task.id), { class: "btn btn-info btn-sm mr-2" }  %>
+            <%= form_with url:tasks_delete_path(task.id), method: :delete do |form| %>
+              <% form.submit "Eliminar",class: "btn btn-danger btn-sm mr-2" %>
+            <%end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

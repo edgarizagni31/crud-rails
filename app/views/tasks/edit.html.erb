@@ -1,0 +1,33 @@
+<div class="card w-50 mx-auto mt-4">
+  <div class="card-body">
+    <h2 class="card-title">Editar tarea</h2>
+    <div class="mb-4">
+      <%= form_with model: @task,url: tasks_update_path(@task.id), method: :put do |form|  %>
+        <ul>
+          <% @task.errors.full_messages.each do |error| %>
+            <li style="color: red;">
+              <%= error%>
+            </li>
+          <% end %>
+        </ul>
+        <div class="w-100 mb-3">
+          <%= form.label :title, "Titulo" %>
+          <%= form.text_field :title,  class: "w-100 p-2",  value: @task.title %>
+        </div>
+        <div class="w-100 mb-3">
+          <%= form.label :description, "Descripcion" %>
+          <%= form.text_field :description,  class: "w-100 p-2", value: @task.description %>
+        </div>
+        <div class="w-100 mb-3 d-flex flex-column">
+          <%= form.label :status, "Estado" %>
+          <%= form.select :status, ["NUEVA", "COMPLETADA", "EN CURSO", "CANCELADA"], value: @task.status %>
+        </div>
+        <div class="w-100 d-flex flex-column mb-3">
+          <%= form.label :photo, "Foto" %>
+          <%= form.file_field :photo, class: "form-control" %>
+        </div>
+        <%= form.submit "Editar", class: "btn btn-sm btn-primary w-100" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="card w-25 mt-4 mx-auto" >
+  <%= image_tag url_for(@task.photo), style: 'height:100%;width:100px;' %>
+  <div class="card-body">
+    <h5 class="card-title"> <%= @task.title %>  </h5>
+    <p class="card-text"> <%= @task.description %></p>
+    <%= @task.status %>
+  </div>
+</div>
